@@ -13,10 +13,14 @@ This app provides demo.okta with a starting point for a compelling security-focu
 npm install
 ```
 
-
 2. Rename `.env.sample` to `.env` and replace or check the following values. 
 
-ping Julian for secrets :
+ping Julian for secrets
+
+Our demo user is:
+
+- demo.okta@secops.com
+- Password!23
 
 3. Run the sample app:
 
