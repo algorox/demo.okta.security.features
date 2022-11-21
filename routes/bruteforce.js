@@ -2,6 +2,8 @@ const router = require('express').Router();
 const ip = require('random-ip')
 const postRequest = require('../utils/requests').handlePublicPOST;
 const passwordGenerator = require('randomstring');
+const dotenv = require('dotenv');
+dotenv.load()
 
 router.post('/consistentIP', function (req, res) {
   const url = `${process.env.SEC_TENANT_BASE_URL}/oauth/token`;
@@ -27,8 +29,8 @@ router.post('/consistentIP', function (req, res) {
             "ip": changingIp,
             "password_attempt": process.env.SEC_TENANT_CORRECT_PW,
             "time": now,
-            "Auth_Response": output}
-          );
+            "Auth_Response": output
+          });
       }).catch((err) => {
           res.status(err.error)
           res.send({
@@ -42,7 +44,7 @@ router.post('/consistentIP', function (req, res) {
 
 router.post('/changingIP', function (req, res) {
 
-  var changingIp = ip('0.0.0.0', 16, 24)
+  var changingIp = ip('0.0.0.0', 16, 24);
   password = passwordGenerator.generate();
   var now = new Date();
 
@@ -67,8 +69,8 @@ router.post('/changingIP', function (req, res) {
             "ip": changingIp,
             "password_attempt": process.env.SEC_TENANT_CORRECT_PW,
             "time": now,
-            "Auth_Response": output}
-          );
+            "Auth_Response": output
+          });
       }).catch((err) => {
           res.status(err.error)
           res.send({
@@ -82,10 +84,9 @@ router.post('/changingIP', function (req, res) {
 
 router.post('/bypass', function (req, res) {
 
-  var changingIp = ip('0.0.0.0', 16, 24)
-  var now = new Date();
-
+  var changingIp = ip('0.0.0.0', 16, 24);
   const url = `${process.env.SEC_TENANT_BASE_URL}/oauth/token`;
+  var now = new Date();
   const body = {
     "grant_type": "http://auth0.com/oauth/grant-type/password-realm",
     "client_id": process.env.SEC_TENANT_CLIENT_ID_BRUTE,
@@ -106,18 +107,17 @@ router.post('/bypass', function (req, res) {
             "ip": changingIp,
             "password_attempt": process.env.SEC_TENANT_CORRECT_PW,
             "time": now,
-            "Auth_Response": output}
-          );
+            "Auth_Response": output
+          });
       }).catch((err) => {
           res.status(err.error)
           res.send({
             "ip": changingIp,
-            "password_attempt": password,
+            "password_attempt": process.env.SEC_TENANT_CORRECT_PW,
             "time": now,
             "Auth_Response": err
           });    
       });
 });
-
 
 module.exports = router;
