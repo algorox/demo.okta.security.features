@@ -1,44 +1,45 @@
 <%- include('partials/header') -%>
 
   <h1 class="text-4xl mb-4">Welcome to the demo.okta Security Demo Centre</h1>
-
-  <div>
-    <p>Unblock a user: Do this first!</p>
-    <input type="button" id="unblockUser" value="Unblock">
-    <br>
-    <pre id="UnblockResults" hidden="true"></pre>
+  <div class="col-sm-6">
+  <pre id="Results"> The demo.okta Security Centre shows you the value of Okta's Security Features </pre>
   </div>
-  <br>
-  <hr>
-  <br>
+  <div class="col-sm-6">
   <div>
-    <p>Consistent IPs allow us to block trying to breach the account</p>
-    <p>This will block after 5 unsuccessful attempts</p>
+    <h2>1. Unblock</h2>
+    <p>Unblock our demo user: Do this first!</p>
+    <input type="button" id="unblockUser" value="Unblock Demo User">
+    <br>
+    
+  </div>
+  <hr>
+  <div>
+    <h2>2. Consistent IPs</h2>
+    <p>Consistent IPs allow us to block attempts to breach the account...</p>
+    <p>This will block our demo user after 5 consecutive unsuccessful attempts</p>
       <input type="button" id="bruteForceFixedIP" value="Brute Force with Fixed IP">
       <br>
       <pre id="bruteForceFixedIPResults" hidden="true"></pre>
   </div>
-  <br>
   <hr>
-  <br>
   <div>
+    <h2>3. Changing IPs</h2>
     <p>Different IPs allow us to continue trying to breach the account</p>
     <input type="button" id="bruteForceChangingIP" value="Brute Force with Changing IP">
     <br>
     <pre id="bruteForceChangingIPResults" hidden="true"></pre>
 </div>
-<br>
 <hr>
-<br>
 <div>
+  <h2>4. Bypass</h2>
   <p>With different IPs but the correct password, we can bypass Brute Force</p>
+  <p>We need something else... cue Bot Detection</p>
   <input type="button" id="bruteForceBypass" value="Brute Force Bypass">
   <br>
   <pre id="bruteForceBypassResults" hidden="true"></pre>
 </div>
-<br>
 <hr>
-<br>
+</div>
 
 
 
@@ -59,13 +60,11 @@
         },
         success: function (data) {
 
-          $('#bruteForceFixedIPResults').text(JSON.stringify(data.responseJSON, null, 2));
-          $('#bruteForceFixedIPResults').show();
+          $('#Results').text(JSON.stringify(data.responseJSON, null, 2));
 
         },
         error: function (data) {
-          $('#bruteForceFixedIPResults').text(JSON.stringify(data.responseJSON, null, 2));
-          $('#bruteForceFixedIPResults').show();
+          $('#Results').text(JSON.stringify(data.responseJSON, null, 2));
         }
       });
     });
@@ -85,13 +84,11 @@ $('#bruteForceChangingIP').on('click', function (e) {
     },
     success: function (data) {
 
-      $('#bruteForceChangingIPResults').text(JSON.stringify(data.responseJSON, null, 2));
-      $('#bruteForceChangingIPResults').show();
+      $('#Results').text(JSON.stringify(data.responseJSON, null, 2));
 
     },
     error: function (data) {
-      $('#bruteForceChangingIPResults').text(JSON.stringify(data.responseJSON, null, 2));
-      $('#bruteForceChangingIPResults').show();
+      $('#Results').text(JSON.stringify(data.responseJSON, null, 2));
     }
   });
 });
@@ -111,13 +108,11 @@ $('#bruteForceBypass').on('click', function (e) {
     },
     success: function (data) {
 
-      $('#bruteForceBypassResults').text(JSON.stringify(data, null, 2));
-      $('#bruteForceBypassResults').show();
+      $('#Results').text(JSON.stringify(data, null, 2));
 
     },
     error: function (data) {
-      $('#bruteForceBypassResults').text(JSON.stringify(data.responseJSON, null, 2));
-      $('#bruteForceBypassResults').show();
+      $('#Results').text(JSON.stringify(data.responseJSON, null, 2));
     }
   });
 });
@@ -137,13 +132,11 @@ $('#unblockUser').on('click', function (e) {
     },
     success: function (data) {
 
-      $('#UnblockResults').text(JSON.stringify(data, null, 2));
-      $('#UnblockResults').show();
+      $('#Results').text(JSON.stringify(data, null, 2));
 
     },
     error: function (data) {
-      $('#UnblockResults').text(JSON.stringify(data.responseJSON, null, 2));
-      $('#UnblockResults').show();
+      $('#Results').text(JSON.stringify(data.responseJSON, null, 2));
     }
   });
 });
