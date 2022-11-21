@@ -2,7 +2,8 @@
 
   <h1 class="text-4xl mb-4">demo.okta Security Demo Centre</h1>
   <div class="col-sm-4">
-  <pre style="white-space: pre-wrap; word-break: keep-all;"id="Results">The demo.okta Security Centre shows you the value of Okta's Security Features. Let's get started with Brute Force...</pre>
+    <p>The demo.okta Security Centre demo simulates a variety of tools that hackers use to takeover user accounts and showcases how CIC can mitigate the risk of account compromise</p>
+  <pre style="white-space: pre-wrap; word-break: keep-all;"id="Results">Let's begin. Start with step 1. Unblock...</pre>
   </div>
 
   <div class="col-sm-4">
@@ -15,8 +16,8 @@
   <hr>
   <div>
     <h2>2. Consistent IPs</h2>
-    <p>Consistent IPs allow us to block attempts to breach the account...</p>
-    <p>Brute Force will block our demo user after 3 consecutive unsuccessful attempts from the same IP</p>
+    <p>Consistent IPs allow CIC to block attempts to breach a user account...</p>
+    <p>So, if a hacker uses the same IP for their requests, Brute Force will block the demo user after 3 consecutive unsuccessful attempts from the same IP</p>
     <p>The threshold is configurable in the CIC Tenant</p>
     👉 <input type="button" id="bruteForceFixedIP" value="Brute Force with Fixed IP">
       <br>
@@ -24,8 +25,8 @@
   <hr>
   <div>
     <h2>3. Changing IPs</h2>
-    <p>Different IPs allow us to continue trying to breach the account, even after the account has been blocked</p>
-    <p>This is why bot attacks depend on different IPs</p>
+    <p>Different IPs allow a hacker to continue trying to breach a user account, even after the account has been blocked</p>
+    <p>This is why bot attacks depend on different IPs and using many IPs to breach services is very common place</p>
     👉 <input type="button" id="bruteForceChangingIP" value="Brute Force with Changing IP">
     <br>
 </div>
@@ -39,7 +40,7 @@
 <div class="col-sm-4">
   <div>
     <h2>4. Bypass</h2>
-    <p>With different IPs but the correct password, we can bypass Brute Force and get access to the account</p>
+    <p>With different IPs but the correct password, a hacker can bypass Brute Force and get access to the account</p>
     👉 <input type="button" id="bruteForceBypass" value="Brute Force Bypass">
     <br>
     <br>
@@ -48,8 +49,9 @@
   <hr>
   <div>
     <h2>5. Captcha</h2>
-    <p>We can slow down bot attacks with captcha</p>
+    <p>We can slow down bot attacks <i>significantly</i>  with captcha</p>
     <p>Bots have real difficulty trying to get past the challenge</p>
+    <p>Notice too that until now, we have not used the Universal Login Page. We <b>strongly</b> recommend using the Universal Login Page as this reduces the ease with which brute force attacks, like the one in the previous steps, can be successful</p>
     👉 <input type="button" id="captcha" value="Captcha">
     <br>
   </div>
