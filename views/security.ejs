@@ -1,16 +1,17 @@
 <%- include('partials/header') -%>
 
   <h1 class="text-4xl mb-4">Welcome to the demo.okta Security Demo Centre</h1>
-  <div class="col-sm-6" >
+  <div class="col-sm-4" >
   <pre style="white-space: pre-wrap; word-break: keep-all;"id="Results">The demo.okta Security Centre shows you the value of Okta's Security Features. Let's get started with Brute Force...</pre>
   </div>
-  <div class="col-sm-6">
+
+
+  <div class="col-sm-4">
   <div>
     <h2>1. Unblock</h2>
     <p>Unblock our demo user: Do this first!</p>
     <input type="button" id="unblockUser" value="Unblock Demo User">
     <br>
-    
   </div>
   <hr>
   <div>
@@ -30,16 +31,40 @@
     <pre id="bruteForceChangingIPResults" hidden="true"></pre>
 </div>
 <hr>
-<div>
-  <h2>4. Bypass</h2>
-  <p>With different IPs but the correct password, we can bypass Brute Force and get access to the account</p>
-  <p>We need something else... cue Bot Detection</p>
-  <input type="button" id="bruteForceBypass" value="Brute Force Bypass">
-  <br>
-  <pre id="bruteForceBypassResults" hidden="true"></pre>
+
 </div>
-<hr>
-</div>
+
+
+
+
+<div class="col-sm-4">
+  <div>
+    <h2>4. Bypass</h2>
+    <p>With different IPs but the correct password, we can bypass Brute Force and get access to the account</p>
+    <p>We need something else... cue Bot Detection</p>
+    <input type="button" id="bruteForceBypass" value="Brute Force Bypass">
+    <br>
+    <pre id="bruteForceBypassResults" hidden="true"></pre>
+  </div>
+  <hr>
+  <div>
+    <h2>5. Captcha</h2>
+    <p>We can slow down bot attacks with captcha</p>
+    <p>Bots have real difficulty trying to get past the challenge</p>
+    <input type="button" id="captcha" value="Captcha">
+    <br>
+  </div>
+  <hr>
+
+  <div>
+    <h2>6. MFA</h2>
+    <p>Assuming bots can bypass Captcha - MFA still stands in their way</p>
+    <input type="button" id="MFA" value="MFA">
+    <br>
+  </div>
+  <hr>
+
+  </div>
 
 
 
@@ -142,4 +167,25 @@ $('#unblockUser').on('click', function (e) {
 });
 
 });
+
+$(function () {
+
+$('#captcha').on('click', function (e) {
+
+  var redirectWindow = window.open('https://demo-platform-secops.us.auth0.com/v2/logout?returnTo=http://localhost:3000/redirect', '_blank');
+    redirectWindow.location;
+});
+
+});
+
+$(function () {
+
+$('#MFA').on('click', function (e) {
+
+  var redirectWindow = window.open('https://demo-platform-secops.us.auth0.com/v2/logout?returnTo=http://localhost:3000/redirect_mfa', '_blank');
+    redirectWindow.location;
+}); 
+
+});
+
 </script>

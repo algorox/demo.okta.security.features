@@ -3,8 +3,28 @@ const { requiresAuth } = require('express-openid-connect');
 
 router.get('/', function (req, res, next) {
   res.render('index', {
-    title: 'Auth0 Webapp sample Nodejs',
+    title: 'demo.okta Security Demo',
     isAuthenticated: req.oidc.isAuthenticated()
+  });
+});
+
+router.get('/redirect', function (req, res, next) {
+  res.redirect(process.env.REDIRECT_URL);
+});
+
+router.get('/redirect_mfa', function (req, res, next) {
+  res.redirect(process.env.REDIRECT_MFA_URL);
+});
+
+router.get('/debug', function (req, res, next) {
+  res.render('debug', {
+    title: 'Signed In!',
+  });
+});
+
+router.get('/debug_mfa', function (req, res, next) {
+  res.render('debug_mfa', {
+    title: 'Signed In with MFA!',
   });
 });
 
