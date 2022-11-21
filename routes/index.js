@@ -8,6 +8,13 @@ router.get('/', function (req, res, next) {
   });
 });
 
+router.get('/security', requiresAuth(), function (req, res, next) {
+  res.render('security', {
+    userProfile: JSON.stringify(req.oidc.user, null, 2),
+    title: 'Security page'
+  });
+});
+
 router.get('/profile', requiresAuth(), function (req, res, next) {
   res.render('profile', {
     userProfile: JSON.stringify(req.oidc.user, null, 2),
@@ -15,11 +22,5 @@ router.get('/profile', requiresAuth(), function (req, res, next) {
   });
 });
 
-router.get('/security', requiresAuth(), function (req, res, next) {
-  res.render('security', {
-    userProfile: JSON.stringify(req.oidc.user, null, 2),
-    title: 'Security page'
-  });
-});
 
 module.exports = router;
