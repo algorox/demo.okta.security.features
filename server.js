@@ -4,8 +4,8 @@ const http = require('http');
 const logger = require('morgan');
 const path = require('path');
 const router = require('./routes/index');
+const bruteforce = require('./routes/bruteforce');
 const { auth } = require('express-openid-connect');
-
 dotenv.load();
 
 const app = express();
@@ -29,6 +29,8 @@ if (!config.baseURL && !process.env.BASE_URL && process.env.PORT && process.env.
 
 app.use(auth(config));
 
+
+
 // Middleware to make the `user` object available for all views
 app.use(function (req, res, next) {
   res.locals.user = req.oidc.user;
@@ -36,6 +38,7 @@ app.use(function (req, res, next) {
 });
 
 app.use('/', router);
+app.use('/bruteforce', bruteforce);
 
 // Catch 404 and forward to error handler
 app.use(function (req, res, next) {
