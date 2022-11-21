@@ -1,12 +1,13 @@
 <%- include('partials/header') -%>
 
-  <h1 class="text-4xl mb-4">demo.okta Security Demo Centre</h1>
-  <div class="col-sm-4">
-    <p>The demo.okta Security Centre demo simulates a variety of tools that hackers use to takeover user accounts and showcases how CIC can mitigate the risk of account compromise</p>
-  <pre style="white-space: pre-wrap; word-break: keep-all;"id="Results">Let's begin. Start with step 1. Unblock...</pre>
-  </div>
 
-  <div class="col-sm-4">
+  <div class="col-sm-3">
+    <img width="125" height="125" src="https://demo-eng-public-static-resources.s3.amazonaws.com/okta-icon.png"></img>
+    <h3>The demo.okta Security Centre demo simulates a variety of tools that hackers use to takeover user accounts and showcases how CIC can mitigate the risk of account compromise</h3>
+    <h3>Head to our <a href="https://insights.demo.okta.com ">insights.demo</a> too so that you can see a selection of the log events created by this demo</h3>
+</div>
+
+  <div class="col-sm-3">
   <div>
     <h2>1. Unblock</h2>
     <p>Unblock our demo user: <b>Do this first!</b></p>
@@ -26,7 +27,7 @@
   <div>
     <h2>3. Changing IPs</h2>
     <p>Different IPs allow a hacker to continue trying to breach a user account, even after the account has been blocked</p>
-    <p>This is why bot attacks depend on different IPs and using many IPs to breach services is very common place</p>
+    <p>This is why bot attacks depend on different IPs. Using many IPs to breach services is very common place</p>
     👉 <input type="button" id="bruteForceChangingIP" value="Brute Force with Changing IP">
     <br>
 </div>
@@ -37,7 +38,7 @@
 
 
 
-<div class="col-sm-4">
+<div class="col-sm-3">
   <div>
     <h2>4. Bypass</h2>
     <p>With different IPs but the correct password, a hacker can bypass Brute Force and get access to the account</p>
@@ -69,6 +70,9 @@
 
   </div>
 
+  <div class="col-sm-3">
+    <pre style="white-space: pre-wrap; word-break: keep-all;"id="Results">Let's begin. Start with step 1. Unblock...</pre>
+  </div>
 
 
 <%- include('partials/footer') -%>
