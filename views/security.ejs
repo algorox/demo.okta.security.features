@@ -1,19 +1,46 @@
 <%- include('partials/header') -%>
 
   <h1 class="text-4xl mb-4">Welcome to the demo.okta Security Demo Centre</h1>
-  
-  <p class="py-3">
-    This is the content of <code class="bg-gray-200">req.user</code>.<br>
-    <strong>Note:</strong> <code class="bg-gray-200">_raw</code> and <code class="bg-gray-200">_json</code> properties have been omitted.
-  </p>
-
-  <pre class="block bg-gray-300 p-4 text-sm overflow-scroll"><%= userProfile %></pre>
 
   <div>
-      <input type="button" id="bruteForce" value="Brute Force">
-      <br>
-      <pre id="bruteForceResults" hidden="true"></pre>
+    <p>Unblock a user: Do this first!</p>
+    <input type="button" id="unblockUser" value="Unblock">
+    <br>
+    <pre id="UnblockResults" hidden="true"></pre>
   </div>
+  <br>
+  <hr>
+  <br>
+  <div>
+    <p>Consistent IPs allow us to block trying to breach the account</p>
+    <p>This will block after 5 unsuccessful attempts</p>
+      <input type="button" id="bruteForceFixedIP" value="Brute Force with Fixed IP">
+      <br>
+      <pre id="bruteForceFixedIPResults" hidden="true"></pre>
+  </div>
+  <br>
+  <hr>
+  <br>
+  <div>
+    <p>Different IPs allow us to continue trying to breach the account</p>
+    <input type="button" id="bruteForceChangingIP" value="Brute Force with Changing IP">
+    <br>
+    <pre id="bruteForceChangingIPResults" hidden="true"></pre>
+</div>
+<br>
+<hr>
+<br>
+<div>
+  <p>With different IPs but the correct password, we can bypass Brute Force</p>
+  <input type="button" id="bruteForceBypass" value="Brute Force Bypass">
+  <br>
+  <pre id="bruteForceBypassResults" hidden="true"></pre>
+</div>
+<br>
+<hr>
+<br>
+
+
 
 <%- include('partials/footer') -%>
 
@@ -21,7 +48,7 @@
 
   $(function () {
 
-    $('#bruteForce').on('click', function (e) {
+    $('#bruteForceFixedIP').on('click', function (e) {
 
       e.preventDefault();
       $.ajax({
@@ -32,17 +59,94 @@
         },
         success: function (data) {
 
-          $('#bruteForceResults').text(JSON.stringify(data, null, 2));
-          $('#bruteForceResults').show();
+          $('#bruteForceFixedIPResults').text(JSON.stringify(data.responseJSON, null, 2));
+          $('#bruteForceFixedIPResults').show();
 
         },
         error: function (data) {
-          $('#bruteForceResults').text(JSON.stringify(data, null, 2));
-          $('#bruteForceResults').show();
+          $('#bruteForceFixedIPResults').text(JSON.stringify(data.responseJSON, null, 2));
+          $('#bruteForceFixedIPResults').show();
         }
       });
     });
 
   });
 
+  $(function () {
+
+$('#bruteForceChangingIP').on('click', function (e) {
+
+  e.preventDefault();
+  $.ajax({
+    url: "/bruteforce/changingIP",
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    success: function (data) {
+
+      $('#bruteForceChangingIPResults').text(JSON.stringify(data.responseJSON, null, 2));
+      $('#bruteForceChangingIPResults').show();
+
+    },
+    error: function (data) {
+      $('#bruteForceChangingIPResults').text(JSON.stringify(data.responseJSON, null, 2));
+      $('#bruteForceChangingIPResults').show();
+    }
+  });
+});
+
+});
+
+$(function () {
+
+$('#bruteForceBypass').on('click', function (e) {
+
+  e.preventDefault();
+  $.ajax({
+    url: "/bruteforce/bypass",
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    success: function (data) {
+
+      $('#bruteForceBypassResults').text(JSON.stringify(data, null, 2));
+      $('#bruteForceBypassResults').show();
+
+    },
+    error: function (data) {
+      $('#bruteForceBypassResults').text(JSON.stringify(data.responseJSON, null, 2));
+      $('#bruteForceBypassResults').show();
+    }
+  });
+});
+
+});
+
+$(function () {
+
+$('#unblockUser').on('click', function (e) {
+
+  e.preventDefault();
+  $.ajax({
+    url: "/user_admin/unblock",
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    success: function (data) {
+
+      $('#UnblockResults').text(JSON.stringify(data, null, 2));
+      $('#UnblockResults').show();
+
+    },
+    error: function (data) {
+      $('#UnblockResults').text(JSON.stringify(data.responseJSON, null, 2));
+      $('#UnblockResults').show();
+    }
+  });
+});
+
+});
 </script>

@@ -5,6 +5,7 @@ const logger = require('morgan');
 const path = require('path');
 const router = require('./routes/index');
 const bruteforce = require('./routes/bruteforce');
+const user_admin = require('./routes/user_admin');
 const { auth } = require('express-openid-connect');
 dotenv.load();
 
@@ -39,6 +40,7 @@ app.use(function (req, res, next) {
 
 app.use('/', router);
 app.use('/bruteforce', bruteforce);
+app.use('/user_admin', user_admin);
 
 // Catch 404 and forward to error handler
 app.use(function (req, res, next) {

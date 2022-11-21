@@ -18,7 +18,6 @@ const handlePublicPOST = (url, body, headers) => {
         customError = {
           error: 500,
           error_description: error,
-          admin: false
         }
         reject(customError);
       }
@@ -30,12 +29,50 @@ const handlePublicPOST = (url, body, headers) => {
           customError = {
             error: response.statusCode || 500,
             error_description: response.body || 'No Description Provided',
-            admin: false
           }
 
           reject(customError)
         }
-        resolve(body);
+        resolve(
+          {body});
+      }
+    });
+  });
+};
+
+const handlePublicDELETE = (url, body, headers) => {
+
+  return new Promise((resolve, reject) => {
+    var options = {
+      method: 'DELETE',
+      url: url,
+      headers: headers,
+      body: body,
+      json: true
+    };
+    request(options, function (error, response, body) {
+
+      if (error) {
+        customError = {
+          error: 500,
+          error_description: error,
+        }
+        reject(customError);
+      }
+
+      if (response) {
+
+        if (arrayOfHTTPErrors.includes(response.statusCode)) {
+
+          customError = {
+            error: response.statusCode || 500,
+            error_description: response.body || 'No Description Provided',
+          }
+
+          reject(customError)
+        }
+        resolve(
+          {body});
       }
     });
   });
@@ -82,5 +119,6 @@ const handlePrivatePOST = (url, body, headers, accessToken) => {
 
 module.exports = {
   handlePrivatePOST,
-  handlePublicPOST
+  handlePublicPOST,
+  handlePublicDELETE
 };
