@@ -1,8 +1,8 @@
 <%- include('partials/header') -%>
 
   <h1 class="text-4xl mb-4">Welcome to the demo.okta Security Demo Centre</h1>
-  <div class="col-sm-6">
-  <pre id="Results"> The demo.okta Security Centre shows you the value of Okta's Security Features </pre>
+  <div class="col-sm-6" >
+  <pre style="white-space: pre-wrap; word-break: keep-all;"id="Results">The demo.okta Security Centre shows you the value of Okta's Security Features. Let's get started with Brute Force...</pre>
   </div>
   <div class="col-sm-6">
   <div>
@@ -16,7 +16,7 @@
   <div>
     <h2>2. Consistent IPs</h2>
     <p>Consistent IPs allow us to block attempts to breach the account...</p>
-    <p>This will block our demo user after 5 consecutive unsuccessful attempts</p>
+    <p>This will block our demo user after 5 consecutive unsuccessful attempts from the same IP</p>
       <input type="button" id="bruteForceFixedIP" value="Brute Force with Fixed IP">
       <br>
       <pre id="bruteForceFixedIPResults" hidden="true"></pre>
@@ -24,7 +24,7 @@
   <hr>
   <div>
     <h2>3. Changing IPs</h2>
-    <p>Different IPs allow us to continue trying to breach the account</p>
+    <p>Different IPs allow us to continue trying to breach the account, even after the account has been blocked</p>
     <input type="button" id="bruteForceChangingIP" value="Brute Force with Changing IP">
     <br>
     <pre id="bruteForceChangingIPResults" hidden="true"></pre>
@@ -32,7 +32,7 @@
 <hr>
 <div>
   <h2>4. Bypass</h2>
-  <p>With different IPs but the correct password, we can bypass Brute Force</p>
+  <p>With different IPs but the correct password, we can bypass Brute Force and get access to the account</p>
   <p>We need something else... cue Bot Detection</p>
   <input type="button" id="bruteForceBypass" value="Brute Force Bypass">
   <br>
