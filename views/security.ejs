@@ -211,7 +211,7 @@ $(function () {
 
 $('#captcha').on('click', function (e) {
 
-  var redirectWindow = window.open('https://demo-platform-secops.us.auth0.com/v2/logout?returnTo=https://demo-okta-security-showcase.onrender.com/redirect', '_blank');
+  var redirectWindow = window.open('<%= captcha_url %>', '_blank');
     redirectWindow.location;
 });
 
@@ -221,7 +221,7 @@ $(function () {
 
 $('#MFA').on('click', function (e) {
 
-  var redirectWindow = window.open('https://demo-platform-secops.us.auth0.com/v2/logout?returnTo=https://demo-okta-security-showcase.onrender.com/redirect_mfa', '_blank');
+  var redirectWindow = window.open('<%= mfa_url %>', '_blank');
     redirectWindow.location;
 }); 
 

@@ -1,8 +1,6 @@
 {
   "name": "demo.okta-security-showcase",
-  "scripts": {
-    "start": 
-  },
+  "scripts": {},
   "dependencies": {
     "auth0": "^2.44.0",
     "debug": "~2.6.9",

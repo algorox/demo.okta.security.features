@@ -9,11 +9,11 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/redirect', function (req, res, next) {
-  res.redirect(process.env.REDIRECT_URL);
+  res.redirect('https://demo-platform-secops.us.auth0.com/authorize?client_id=i0Z6kaJs7C2txy3wajG8wLShSq0pzOyV&response_type=id_token&redirect_uri=' + process.env.BASE_URL + '/debug&nonce=123&scope=openid%20openid%20profile');
 });
 
 router.get('/redirect_mfa', function (req, res, next) {
-  res.redirect(process.env.REDIRECT_MFA_URL);
+  res.redirect('https://demo-platform-secops.us.auth0.com/authorize?client_id=i0Z6kaJs7C2txy3wajG8wLShSq0pzOyV&response_type=id_token&redirect_uri=' + process.env.BASE_URL + '/debug_mfa&nonce=123&scope=openid%20openid%20profile&acr_values=http://schemas.openid.net/pape/policies/2007/06/multi-factor');
 });
 
 router.get('/debug', function (req, res, next) {
@@ -31,7 +31,9 @@ router.get('/debug_mfa', function (req, res, next) {
 router.get('/security', requiresAuth(), function (req, res, next) {
   res.render('security', {
     userProfile: JSON.stringify(req.oidc.user, null, 2),
-    title: 'Security page'
+    title: 'Security page',
+    captcha_url: process.env.SEC_TENANT_BASE_URL + '/v2/logout?returnTo=' + process.env.BASE_URL + '/redirect',
+    mfa_url: process.env.SEC_TENANT_BASE_URL + '/v2/logout?returnTo=' + process.env.BASE_URL + '/redirect_mfa',
   });
 });
 
