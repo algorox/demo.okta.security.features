@@ -1,11 +1,20 @@
 <%- include('partials/header') -%>
 
-
+<div id="map"></div>
+<hr>
+<pre style="white-space: pre-wrap; word-break: keep-all;"id="Results">Let's begin. Start with step 1. Unblock...</pre>
+<hr>
   <div class="col-sm-3">
     <img width="125" height="125" src="https://demo-eng-public-static-resources.s3.amazonaws.com/okta-icon.png"></img>
     <h3>The demo.okta Security Centre demo simulates a variety of tools that hackers use to takeover user accounts and showcases how CIC can mitigate the risk of account compromise</h3>
     <h3>Head to our <a href="https://insights.demo.okta.com " target="_blank">insights.demo</a> too so that you can see a selection of the log events created by this demo</h3>
     <h3>You can also head to the demo tenant <a href="https://manage.auth0.com " target="_blank">auth0.com</a> to check out the config (username: demo.eng@atko.com and password: Password!234</h3>
+    <br>
+
+    <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDiDnaV17ew1SPBkywNqbclU0Xb08VbpWA&callback=initMap&v=weekly"
+    defer
+  ></script>
 </div>
 
   <div class="col-sm-3">
@@ -70,7 +79,8 @@
 
 
   </div>
-  <div>
+
+  <div class="col-sm-3">
     <h2>7. MFA</h2>
     <p>Assuming bots can bypass Captcha - MFA still stands in their way</p>
     <p>When you hit the MFA screen, click 'Try another method and select Email'</p>
@@ -80,16 +90,40 @@
     <br>
     <br>
     To truly mitigate against Bots attacks, we recommend <b>Bot Detection</b>, <b>Breached Password Detection</b> and <b>MFA</b>
-  </div>
-
-  <div class="col-sm-3">
-    <pre style="white-space: pre-wrap; word-break: keep-all;"id="Results">Let's begin. Start with step 1. Unblock...</pre>
+  
   </div>
 
 
 <%- include('partials/footer') -%>
 
 <script>
+var latitude = -25.344;
+var longitude = 53.344;
+
+function initMap(latitude, longitude) {
+  // The location of Uluru
+  
+  const params = {lat: parseFloat(latitude), lng: parseFloat(longitude)}
+
+  const uluru = params;
+  // The map, centered at Uluru
+  //const uluru = { lat: -25.344, lng: 131.031 };
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 4,
+    center: uluru,
+  });
+  // The marker, positioned at Uluru
+  const marker = new google.maps.Marker({
+    position: uluru,
+    map: map,
+  });
+}
+</script>
+
+<script>
+
+
+
 
   $(function () {
 
@@ -103,11 +137,12 @@
           "Content-Type": "application/json",
         },
         success: function (data) {
-
+          window.initMap = initMap(data.responseJSON.latitude, data.responseJSON.longitude);
           $('#Results').text(JSON.stringify(data, null, 2));
 
         },
         error: function (data) {
+          window.initMap = initMap(data.responseJSON.latitude, data.responseJSON.longitude);
           $('#Results').text(JSON.stringify(data.responseJSON, null, 2));
         }
       });
@@ -127,11 +162,12 @@ $('#bruteForceChangingIP').on('click', function (e) {
       "Content-Type": "application/json",
     },
     success: function (data) {
-
+      window.initMap = initMap(data.responseJSON.latitude, data.responseJSON.longitude);
       $('#Results').text(JSON.stringify(data, null, 2));
 
     },
     error: function (data) {
+      window.initMap = initMap(data.responseJSON.latitude, data.responseJSON.longitude);
       $('#Results').text(JSON.stringify(data.responseJSON, null, 2));
     }
   });
@@ -151,11 +187,12 @@ $('#bruteForceBypass').on('click', function (e) {
       "Content-Type": "application/json",
     },
     success: function (data) {
-
+      window.initMap = initMap(data.responseJSON.latitude, data.responseJSON.longitude);
       $('#Results').text(JSON.stringify(data, null, 2));
 
     },
     error: function (data) {
+      window.initMap = initMap(data.responseJSON.latitude, data.responseJSON.longitude);
       $('#Results').text(JSON.stringify(data.responseJSON, null, 2));
     }
   });
@@ -175,11 +212,12 @@ $.ajax({
     "Content-Type": "application/json",
   },
   success: function (data) {
-
+    window.initMap = initMap(data.responseJSON.latitude, data.responseJSON.longitude);
     $('#Results').text(JSON.stringify(data, null, 2));
 
   },
   error: function (data) {
+    window.initMap = initMap(data.responseJSON.latitude, data.responseJSON.longitude);
     $('#Results').text(JSON.stringify(data.responseJSON, null, 2));
   }
 });
