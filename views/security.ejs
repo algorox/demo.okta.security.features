@@ -49,25 +49,33 @@
   </div>
   <hr>
   <div>
-    <h2>5. Captcha</h2>
+    <h2>5. Breached Credentials</h2>
+    <p>If credentials have been identified as breached (using Breached Password Protection), we can block the authentication</p>
+    👉 <input type="button" id="breached" value="Breached Credentials">
+    <br>
+    <br>
+    <p>We need something else... cue <b>Bot Detection</b></p>
+  </div>
+  <hr>
+  <div>
+    <h2>6. Captcha</h2>
     <p>We can slow down bot attacks <i>significantly</i>  with captcha</p>
     <p>Bots have real difficulty trying to get past the challenge</p>
     <p>Notice too that until now, we have not used the Universal Login Page. We <b>strongly</b> recommend using the Universal Login Page as this reduces the ease with which brute force attacks, like the one in the previous steps, can be successful</p>
     👉 <input type="button" id="captcha" value="Captcha">
     <br>
   </div>
-  <hr>
 
+
+
+  </div>
   <div>
-    <h2>6. MFA</h2>
+    <h2>7. MFA</h2>
     <p>Assuming bots can bypass Captcha - MFA still stands in their way</p>
     👉  <input type="button" id="MFA" value="MFA">
     <br>
     <br>
     To truly mitigate against Bots attacks, we recommend <b>Bot Detection </b>and <b>MFA</b>
-  </div>
-  <hr>
-
   </div>
 
   <div class="col-sm-3">
@@ -92,7 +100,7 @@
         },
         success: function (data) {
 
-          $('#Results').text(JSON.stringify(data.responseJSON, null, 2));
+          $('#Results').text(JSON.stringify(data, null, 2));
 
         },
         error: function (data) {
@@ -116,7 +124,7 @@ $('#bruteForceChangingIP').on('click', function (e) {
     },
     success: function (data) {
 
-      $('#Results').text(JSON.stringify(data.responseJSON, null, 2));
+      $('#Results').text(JSON.stringify(data, null, 2));
 
     },
     error: function (data) {
@@ -147,6 +155,30 @@ $('#bruteForceBypass').on('click', function (e) {
       $('#Results').text(JSON.stringify(data.responseJSON, null, 2));
     }
   });
+});
+
+});
+
+$(function () {
+
+$('#breached').on('click', function (e) {
+
+e.preventDefault();
+$.ajax({
+  url: "/bruteforce/breached",
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  success: function (data) {
+
+    $('#Results').text(JSON.stringify(data, null, 2));
+
+  },
+  error: function (data) {
+    $('#Results').text(JSON.stringify(data.responseJSON, null, 2));
+  }
+});
 });
 
 });

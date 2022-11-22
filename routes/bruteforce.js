@@ -120,4 +120,46 @@ router.post('/bypass', function (req, res) {
       });
 });
 
+router.post('/breached', function (req, res) {
+
+  var changingIp = ip('0.0.0.0', 16, 24);
+  var now = new Date();
+
+  const url = `${process.env.SEC_TENANT_BASE_URL}/oauth/token`;
+  const body = {
+    "grant_type": "http://auth0.com/oauth/grant-type/password-realm",
+    "client_id": process.env.SEC_TENANT_CLIENT_ID_BRUTE,
+    "client_secret": process.env.SEC_TENANT_CLIENT_SECRET_BRUTE,
+    "username": process.env.SEC_TENANT_BREACHED_USER,
+    "password": process.env.SEC_TENANT_BREACHED_PW,
+    "realm": process.env.SEC_TENANT_REALM
+  };
+  const headers = {
+    'auth0-forwarded-for': changingIp,
+    'Content-Type': 'application/json'
+  }
+
+  postRequest(url, body, headers)
+      .then((output) => {
+          res.status(200)
+          res.send({
+            "ip": changingIp,
+            "username": process.env.SEC_TENANT_BREACHED_USER,
+            "password_attempt": process.env.SEC_TENANT_BREACHED_PW,
+            "time": now,
+            "Auth_Response": output
+          });
+      }).catch((err) => {
+          res.status(err.error)
+          res.send({
+            'ip': changingIp,
+            "username": process.env.SEC_TENANT_BREACHED_USER,
+            "password_attempt": process.env.SEC_TENANT_BREACHED_PW,
+            "time": now,
+            "Auth_Response": err
+          });    
+      });
+});
+
+
 module.exports = router;
