@@ -13,18 +13,40 @@ a0mgmt = new auth0Mgmt({
 router.post('/unblock', function (req, res) {
 
   var now = new Date();
-  var id = {
+  var email = {
     identifier: process.env.SEC_TENANT_USER
   }
 
-  a0mgmt.unblockUserByIdentifier(id)
+  a0mgmt.unblockUserByIdentifier(email)
   .then((output) => {
+
+    user_id = {
+      id: 'auth0|637a20f7b0b135fc25537a43'
+    }
+
+    data = {
+      password: process.env.SEC_TENANT_CORRECT_PW
+    }
+
+    a0mgmt.users.update(user_id, data)
+    .then((output2) => {      
       res.status(200)
       res.send({
+        "username": 'Username set to ' + process.env.SEC_TENANT_USER,
+        "password": 'Password set to ' + process.env.SEC_TENANT_CORRECT_PW,
         "time": now,
         "Auth_Response": process.env.SEC_TENANT_USER + ' unblocked'}
       );
-  }).catch((err) => {
+    })
+    .catch((err) => {
+      res.status(err.error)
+      res.send({
+        "time": now,
+        "Auth_Response": err
+      });    
+  });
+  })
+  .catch((err) => {
       res.status(err.error)
       res.send({
         "time": now,

@@ -27,6 +27,7 @@ router.post('/consistentIP', function (req, res) {
           res.status(200)
           res.send({
             "ip": changingIp,
+            "username": process.env.SEC_TENANT_USER,
             "password_attempt": process.env.SEC_TENANT_CORRECT_PW,
             "time": now,
             "Auth_Response": output
@@ -67,6 +68,7 @@ router.post('/changingIP', function (req, res) {
           res.status(200)
           res.send({
             "ip": changingIp,
+            "username": process.env.SEC_TENANT_USER,
             "password_attempt": process.env.SEC_TENANT_CORRECT_PW,
             "time": now,
             "Auth_Response": output
@@ -105,6 +107,7 @@ router.post('/bypass', function (req, res) {
           res.status(200)
           res.send({
             "ip": changingIp,
+            "username": process.env.SEC_TENANT_USER,
             "password_attempt": process.env.SEC_TENANT_CORRECT_PW,
             "time": now,
             "Auth_Response": output
