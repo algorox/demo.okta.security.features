@@ -27,7 +27,6 @@ router.post('/consistentIP', function (req, res) {
 
   
   ipLocation('81.22.205.93', null, function(err, ip_data){
-    console.log(ip_data)
     latitude = ip_data.latitude;
     longitude = ip_data.longitude;
   })
@@ -81,7 +80,6 @@ router.post('/changingIP', function (req, res) {
   }
 
   ipLocation(changingIp, null, function(err, ip_data){
-    console.log(ip_data)
     latitude = ip_data.latitude;
     longitude = ip_data.longitude;
   })
@@ -135,7 +133,6 @@ router.post('/bypass', function (req, res) {
   }
 
   ipLocation(changingIp, null, function(err, ip_data){
-    console.log(ip_data)
     latitude = ip_data.latitude;
     longitude = ip_data.longitude;
   })
@@ -188,7 +185,6 @@ router.post('/breached', function (req, res) {
   }
 
   ipLocation(changingIp, null, function(err, ip_data){
-    console.log(ip_data)
     latitude = ip_data.latitude;
     longitude = ip_data.longitude;
   })

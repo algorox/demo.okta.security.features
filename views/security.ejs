@@ -1,272 +1,411 @@
 <%- include('partials/header') -%>
 
-<div id="map"></div>
-<hr>
-<pre style="white-space: pre-wrap; word-break: keep-all;"id="Results">Let's begin. Start with step 1. Unblock...</pre>
-<hr>
-  <div class="col-sm-3">
-    <img width="125" height="125" src="https://demo-eng-public-static-resources.s3.amazonaws.com/okta-icon.png"></img>
-    <h3>The demo.okta Security Centre demo simulates a variety of tools that hackers use to takeover user accounts and showcases how CIC can mitigate the risk of account compromise</h3>
-    <h3>Head to our <a href="https://insights.demo.okta.com " target="_blank">insights.demo</a> too so that you can see a selection of the log events created by this demo</h3>
-    <h3>You can also head to the demo tenant <a href="https://manage.auth0.com " target="_blank">auth0.com</a> to check out the config (username: demo.eng@atko.com and password: Password!234</h3>
-    <br>
+<div class="col-sm-6"> 
+  <div id="map"></div>
+  <hr>
+<pre style="white-space: pre-wrap; word-break: keep-all;"
+  id="Results">Let's begin. Start with step 1. Unblock...</pre>
 
-    <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDiDnaV17ew1SPBkywNqbclU0Xb08VbpWA&callback=initMap&v=weekly"
-    defer
-  ></script>
+
+  <hr>
 </div>
 
   <div class="col-sm-3">
-  <div>
-    <h2>1. Unblock</h2>
-    <p>Unblock our demo user: <b>Do this first!</b></p>
-    👉  <input type="button" id="unblockUser" value="Unblock Demo User">
-    <br>
-  </div>
-  <hr>
-  <div>
-    <h2>2. Consistent IPs</h2>
-    <p>Consistent IPs allow CIC to block attempts to breach a user account...</p>
-    <p>So, if a hacker uses the same IP for their requests, Brute Force will block the demo user after 3 consecutive unsuccessful attempts from the same IP</p>
-    <p>The threshold is configurable in the CIC Tenant</p>
-    👉 <input type="button" id="bruteForceFixedIP" value="Brute Force with Fixed IP">
+    <div>
+      <h2>1. Unblock</h2>
+      <p>Unblock our demo user: <b>Do this first!</b></p>
+      👉 <input type="button" id="unblockUser" value="Unblock Demo User">
       <br>
-  </div>
-  <hr>
-  <div>
-    <h2>3. Changing IPs</h2>
-    <p>Different IPs allow a hacker to continue trying to breach a user account, even after the account has been blocked</p>
-    <p>This is why bot attacks depend on different IPs. Using many IPs to breach services is very common place</p>
-    👉 <input type="button" id="bruteForceChangingIP" value="Brute Force with Changing IP">
-    <br>
-</div>
-<hr>
-
-</div>
-
-
-
-
-<div class="col-sm-3">
-  <div>
-    <h2>4. Bypass</h2>
-    <p>With different IPs but the correct password, a hacker can bypass Brute Force and get access to the account</p>
-    👉 <input type="button" id="bruteForceBypass" value="Brute Force Bypass">
-    <br>
-    <br>
-    <p>We need something else... cue <b>Bot Detection</b></p>
-  </div>
-  <hr>
-  <div>
-    <h2>5. Breached Credentials</h2>
-    <p>If credentials have been identified as breached (using Breached Password Protection), we can block the authentication</p>
-    👉 <input type="button" id="breached" value="Breached Credentials">
-    <br>
-    <br>
-    <p>We need something else... cue <b>Bot Detection</b></p>
-  </div>
-  <hr>
-  <div>
-    <h2>6. Captcha</h2>
-    <p>We can slow down bot attacks <i>significantly</i>  with captcha</p>
-    <p>Bots have real difficulty trying to get past the challenge</p>
-    <p>Notice too that until now, we have not used the Universal Login Page. We <b>strongly</b> recommend using the Universal Login Page as this reduces the ease with which brute force attacks, like the one in the previous steps, can be successful</p>
-    👉 <input type="button" id="captcha" value="Captcha">
-    <br>
-  </div>
-
-
-
+    </div>
+    <hr>
+    <div>
+      <h2>2. Consistent IPs</h2>
+      <p>Consistent IPs allow CIC to block attempts to breach a user account...</p>
+      <p>So, if a hacker uses the same IP for their requests, Brute Force will block the demo user after 3 consecutive
+        unsuccessful attempts from the same IP</p>
+      <p>The threshold is configurable in the CIC Tenant</p>
+      👉 <input type="button" id="bruteForceFixedIP" value="Brute Force with Fixed IP">
+      <br>
+    </div>
+    <hr>
+    <div>
+      <h2>3. Changing IPs</h2>
+      <p>Different IPs allow a hacker to continue trying to breach a user account, even after the account has been
+        blocked</p>
+      <p>This is why bot attacks depend on different IPs. Using many IPs to breach services is very common place</p>
+      👉 <input type="button" id="bruteForceChangingIP" value="Brute Force with Changing IP">
+      <br>
+    </div>
+    <hr>
+    <div>
+      <h2>4. Bypass</h2>
+      <p>With different IPs but the correct password, a hacker can bypass Brute Force and get access to the account</p>
+      👉 <input type="button" id="bruteForceBypass" value="Brute Force Bypass">
+      <br>
+      <br>
+      <p>We need something else... cue <b>Bot Detection</b></p>
+    </div>
+    <hr>
   </div>
 
   <div class="col-sm-3">
-    <h2>7. MFA</h2>
-    <p>Assuming bots can bypass Captcha - MFA still stands in their way</p>
-    <p>When you hit the MFA screen, click 'Try another method and select Email'</p>
-    <p>Head to <a href="https://atko.email " target="_blank">akto.email</a> and sign in with Username: demo.eng@okta.com and Password: Password!234</p>
-    <p>You should see an email for your MFA Code</p>
-    👉  <input type="button" id="MFA" value="MFA">
+    <div>
+      <h2>5. Breached Credentials</h2>
+      <p>If credentials have been identified as breached (using Breached Password Protection), we can block the
+        authentication</p>
+      👉 <input type="button" id="breached" value="Breached Credentials">
+      <br>
+      <br>
+      <p>We need something else... cue <b>Bot Detection</b></p>
+    </div>
+    <hr>
+    <div>
+      <h2>6. Captcha</h2>
+      <p>We can slow down bot attacks <i>significantly</i> with captcha</p>
+      <p>Bots have real difficulty trying to get past the challenge</p>
+      <p>Notice too that until now, we have not used the Universal Login Page. We <b>strongly</b> recommend using the
+        Universal Login Page as this reduces the ease with which brute force attacks, like the one in the previous
+        steps, can be successful</p>
+      👉 <input type="button" id="captcha" value="Captcha">
+      <hr>
+      <h2>7. MFA</h2>
+      <p>Assuming bots can bypass Captcha - MFA still stands in their way</p>
+      <p>When you hit the MFA screen, click 'Try another method and select Email'</p>
+      <p>Head to <a href="https://atko.email " target="_blank">akto.email</a> and sign in with Username: demo.eng@okta.com
+        and Password: Password!234</p>
+      <p>You should see an email for your MFA Code</p>
+      👉 <input type="button" id="MFA" value="MFA">
+      <br>
+      <br>
+      To truly mitigate against Bots attacks, we recommend <b>Bot Detection</b>, <b>Breached Password Detection</b> and
+      <b>MFA</b>
+    </div>
+
+
+  <div>
+    <img width="125" height="125" src="https://demo-eng-public-static-resources.s3.amazonaws.com/okta-icon.png"></img>
+    <h3>The demo.okta Security Centre demo simulates a variety of tools that hackers use to takeover user accounts and
+      showcases how CIC can mitigate the risk of account compromise</h3>
+    <h3>Head to our <a href="https://insights.demo.okta.com " target="_blank">insights.demo</a> too so that you can see
+      a selection of the log events created by this demo</h3>
+    <h3>You can also head to the demo tenant <a href="https://manage.auth0.com " target="_blank">auth0.com</a> to check
+      out the config (username: demo.eng@atko.com and password: Password!234</h3>
     <br>
-    <br>
-    To truly mitigate against Bots attacks, we recommend <b>Bot Detection</b>, <b>Breached Password Detection</b> and <b>MFA</b>
-  
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDstb_UCoR8GmUPIvZUlf7OCFQRcbRfi6w&callback=initMap&v=weekly"
+      defer></script>
   </div>
+  <br>
 
 
-<%- include('partials/footer') -%>
-
-<script>
-var latitude = -25.344;
-var longitude = 53.344;
-
-function initMap(latitude, longitude) {
-  // The location of Uluru
-  
-  const params = {lat: parseFloat(latitude), lng: parseFloat(longitude)}
-
-  const uluru = params;
-  // The map, centered at Uluru
-  //const uluru = { lat: -25.344, lng: 131.031 };
-  const map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 4,
-    center: uluru,
-  });
-  // The marker, positioned at Uluru
-  const marker = new google.maps.Marker({
-    position: uluru,
-    map: map,
-  });
-}
-</script>
-
-<script>
+  <%- include('partials/footer') -%>
 
 
+    <script>
 
 
-  $(function () {
+      function initMap() {
 
-    $('#bruteForceFixedIP').on('click', function (e) {
+        const params = { lat: parseFloat(50.000), lng: parseFloat(0.000) }
 
-      e.preventDefault();
-      $.ajax({
-        url: "/bruteforce/consistentIP",
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        success: function (data) {
-          window.initMap = initMap(data.responseJSON.latitude, data.responseJSON.longitude);
-          $('#Results').text(JSON.stringify(data, null, 2));
+        const uluru = params;
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 4,
+          center: uluru,
+        });
 
-        },
-        error: function (data) {
-          window.initMap = initMap(data.responseJSON.latitude, data.responseJSON.longitude);
-          $('#Results').text(JSON.stringify(data.responseJSON, null, 2));
-        }
+        const marker = new google.maps.Marker({
+          position: uluru,
+          map: map,
+        });
+      }
+
+      $(function () {
+
+        $('#bruteForceFixedIP').on('click', function (e) {
+
+          e.preventDefault();
+          $.ajax({
+            url: "/bruteforce/consistentIP",
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            success: function (data) {
+
+              function initMap(latitude, longitude) {
+
+                const params = { lat: parseFloat(latitude), lng: parseFloat(longitude) }
+
+                const uluru = params;
+                const map = new google.maps.Map(document.getElementById("map"), {
+                  zoom: 4,
+                  center: uluru,
+                });
+
+                const marker = new google.maps.Marker({
+                  position: uluru,
+                  map: map,
+                });
+              }
+
+              window.initMap = initMap(data.latitude, data.longitude);
+
+              $('#Results').text(JSON.stringify(data, null, 2));
+
+            },
+            error: function (data) {
+
+              function initMap(latitude, longitude) {
+
+                const params = { lat: parseFloat(latitude), lng: parseFloat(longitude) }
+
+                const uluru = params;
+                const map = new google.maps.Map(document.getElementById("map"), {
+                  zoom: 4,
+                  center: uluru,
+                });
+
+                const marker = new google.maps.Marker({
+                  position: uluru,
+                  map: map,
+                });
+              }
+
+              window.initMap = initMap(data.responseJSON.latitude, data.responseJSON.longitude);
+
+              $('#Results').text(JSON.stringify(data.responseJSON, null, 2));
+            }
+          });
+        });
+
       });
-    });
 
-  });
+      $(function () {
 
-  $(function () {
+        $('#bruteForceChangingIP').on('click', function (e) {
 
-$('#bruteForceChangingIP').on('click', function (e) {
+          e.preventDefault();
+          $.ajax({
+            url: "/bruteforce/changingIP",
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            success: function (data) {
 
-  e.preventDefault();
-  $.ajax({
-    url: "/bruteforce/changingIP",
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    success: function (data) {
-      window.initMap = initMap(data.responseJSON.latitude, data.responseJSON.longitude);
-      $('#Results').text(JSON.stringify(data, null, 2));
+              function initMap(latitude, longitude) {
 
-    },
-    error: function (data) {
-      window.initMap = initMap(data.responseJSON.latitude, data.responseJSON.longitude);
-      $('#Results').text(JSON.stringify(data.responseJSON, null, 2));
-    }
-  });
-});
+                const params = { lat: parseFloat(latitude), lng: parseFloat(longitude) }
 
-});
+                const uluru = params;
+                const map = new google.maps.Map(document.getElementById("map"), {
+                  zoom: 4,
+                  center: uluru,
+                });
 
-$(function () {
+                const marker = new google.maps.Marker({
+                  position: uluru,
+                  map: map,
+                });
+              }
 
-$('#bruteForceBypass').on('click', function (e) {
+              window.initMap = initMap(data.latitude, data.longitude);
 
-  e.preventDefault();
-  $.ajax({
-    url: "/bruteforce/bypass",
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    success: function (data) {
-      window.initMap = initMap(data.responseJSON.latitude, data.responseJSON.longitude);
-      $('#Results').text(JSON.stringify(data, null, 2));
+              $('#Results').text(JSON.stringify(data, null, 2));
 
-    },
-    error: function (data) {
-      window.initMap = initMap(data.responseJSON.latitude, data.responseJSON.longitude);
-      $('#Results').text(JSON.stringify(data.responseJSON, null, 2));
-    }
-  });
-});
+            },
+            error: function (data) {
 
-});
+              function initMap(latitude, longitude) {
 
-$(function () {
+                const params = { lat: parseFloat(latitude), lng: parseFloat(longitude) }
 
-$('#breached').on('click', function (e) {
+                const uluru = params;
+                const map = new google.maps.Map(document.getElementById("map"), {
+                  zoom: 4,
+                  center: uluru,
+                });
 
-e.preventDefault();
-$.ajax({
-  url: "/bruteforce/breached",
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  success: function (data) {
-    window.initMap = initMap(data.responseJSON.latitude, data.responseJSON.longitude);
-    $('#Results').text(JSON.stringify(data, null, 2));
+                const marker = new google.maps.Marker({
+                  position: uluru,
+                  map: map,
+                });
+              }
 
-  },
-  error: function (data) {
-    window.initMap = initMap(data.responseJSON.latitude, data.responseJSON.longitude);
-    $('#Results').text(JSON.stringify(data.responseJSON, null, 2));
-  }
-});
-});
+              window.initMap = initMap(data.responseJSON.latitude, data.responseJSON.longitude);
 
-});
+              $('#Results').text(JSON.stringify(data.responseJSON, null, 2));
+            }
+          });
+        });
 
-$(function () {
+      });
 
-$('#unblockUser').on('click', function (e) {
+      $(function () {
 
-  e.preventDefault();
-  $.ajax({
-    url: "/user_admin/unblock",
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    success: function (data) {
+        $('#bruteForceBypass').on('click', function (e) {
 
-      $('#Results').text(JSON.stringify(data, null, 2));
+          e.preventDefault();
+          $.ajax({
+            url: "/bruteforce/bypass",
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            success: function (data) {
 
-    },
-    error: function (data) {
-      $('#Results').text(JSON.stringify(data.responseJSON, null, 2));
-    }
-  });
-});
+              function initMap(latitude, longitude) {
 
-});
+                const params = { lat: parseFloat(latitude), lng: parseFloat(longitude) }
 
-$(function () {
+                const uluru = params;
+                const map = new google.maps.Map(document.getElementById("map"), {
+                  zoom: 4,
+                  center: uluru,
+                });
 
-$('#captcha').on('click', function (e) {
+                const marker = new google.maps.Marker({
+                  position: uluru,
+                  map: map,
+                });
+              }
 
-  var redirectWindow = window.open('<%= captcha_url %>', '_blank');
-    redirectWindow.location;
-});
+              window.initMap = initMap(data.latitude, data.longitude);
 
-});
+              $('#Results').text(JSON.stringify(data, null, 2));
 
-$(function () {
+            },
+            error: function (data) {
 
-$('#MFA').on('click', function (e) {
+              function initMap(latitude, longitude) {
 
-  var redirectWindow = window.open('<%= mfa_url %>', '_blank');
-    redirectWindow.location;
-}); 
+                const params = { lat: parseFloat(latitude), lng: parseFloat(longitude) }
 
-});
+                const uluru = params;
+                const map = new google.maps.Map(document.getElementById("map"), {
+                  zoom: 4,
+                  center: uluru,
+                });
 
-</script>
+                const marker = new google.maps.Marker({
+                  position: uluru,
+                  map: map,
+                });
+              }
+
+              window.initMap = initMap(data.responseJSON.latitude, data.responseJSON.longitude);
+
+              $('#Results').text(JSON.stringify(data.responseJSON, null, 2));
+            }
+          });
+        });
+
+      });
+
+      $(function () {
+
+        $('#breached').on('click', function (e) {
+
+          e.preventDefault();
+          $.ajax({
+            url: "/bruteforce/breached",
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            success: function (data) {
+
+              function initMap(latitude, longitude) {
+
+                const params = { lat: parseFloat(latitude), lng: parseFloat(longitude) }
+
+                const uluru = params;
+                const map = new google.maps.Map(document.getElementById("map"), {
+                  zoom: 4,
+                  center: uluru,
+                });
+
+                const marker = new google.maps.Marker({
+                  position: uluru,
+                  map: map,
+                });
+              }
+
+              window.initMap = initMap(data.latitude, data.longitude);
+
+              $('#Results').text(JSON.stringify(data, null, 2));
+
+            },
+            error: function (data) {
+
+              function initMap(latitude, longitude) {
+
+                const params = { lat: parseFloat(latitude), lng: parseFloat(longitude) }
+
+                const uluru = params;
+                const map = new google.maps.Map(document.getElementById("map"), {
+                  zoom: 4,
+                  center: uluru,
+                });
+
+                const marker = new google.maps.Marker({
+                  position: uluru,
+                  map: map,
+                });
+              }
+
+              window.initMap = initMap(data.responseJSON.latitude, data.responseJSON.longitude);
+
+              $('#Results').text(JSON.stringify(data.responseJSON, null, 2));
+            }
+          });
+        });
+
+      });
+
+      $(function () {
+
+        $('#unblockUser').on('click', function (e) {
+
+          e.preventDefault();
+          $.ajax({
+            url: "/user_admin/unblock",
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            success: function (data) {
+
+              $('#Results').text(JSON.stringify(data, null, 2));
+
+            },
+            error: function (data) {
+              $('#Results').text(JSON.stringify(data.responseJSON, null, 2));
+            }
+          });
+        });
+
+      });
+
+      $(function () {
+
+        $('#captcha').on('click', function (e) {
+
+          var redirectWindow = window.open('<%= captcha_url %>', '_blank');
+          redirectWindow.location;
+        });
+
+      });
+
+      $(function () {
+
+        $('#MFA').on('click', function (e) {
+
+          var redirectWindow = window.open('<%= mfa_url %>', '_blank');
+          redirectWindow.location;
+        });
+
+      });
+
+    </script>
