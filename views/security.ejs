@@ -92,9 +92,9 @@
       out the config (username: demo.eng@atko.com and password: Password!234</h3>
     <br>
     <script>
-      var api_key='<%= process.env.userId%>';
+      var api_key= '<%= process.env.GOOGLE_API_KEY%>'
       var script = document.createElement('script');
-      script.src = "https://maps.googleapis.com/maps/api/js?key=" + api_key + "AIzaSyDstb_UCoR8GmUPIvZUlf7OCFQRcbRfi6w&callback=initMap&v=weekly";
+      script.src = "https://maps.googleapis.com/maps/api/js?key=" + api_key + "&callback=initMap&v=weekly";
       script.src.defer
       document.getElementsByTagName('script')[0].parentNode.appendChild(script);
       </script>  
