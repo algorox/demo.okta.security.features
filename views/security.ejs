@@ -91,9 +91,13 @@
     <h3>You can also head to the demo tenant <a href="https://manage.auth0.com " target="_blank">auth0.com</a> to check
       out the config (username: demo.eng@atko.com and password: Password!234</h3>
     <br>
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDstb_UCoR8GmUPIvZUlf7OCFQRcbRfi6w&callback=initMap&v=weekly"
-      defer></script>
+    <script>
+      var api_key='<%= process.env.userId%>';
+      var script = document.createElement('script');
+      script.src = "https://maps.googleapis.com/maps/api/js?key=" + api_key + "AIzaSyDstb_UCoR8GmUPIvZUlf7OCFQRcbRfi6w&callback=initMap&v=weekly";
+      script.src.defer
+      document.getElementsByTagName('script')[0].parentNode.appendChild(script);
+      </script>  
   </div>
   <br>
 
@@ -102,7 +106,6 @@
 
 
     <script>
-
 
       function initMap() {
 
